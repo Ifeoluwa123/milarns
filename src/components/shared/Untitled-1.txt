@@ -1,0 +1,25 @@
+ {
+                    RecentWageData.map((item, index)=>{
+                        return(
+                        <li className=' p-[1rem]  w-full md:grid-cols-1  hover:bg-[--grey-color] rounded-md hover:shadow-[1.5px_1.5px_1px_1px_rgba(0,0,0,1)]'>
+                            <div className=" justify-between grid grid-cols-[50px,repeat(4,1fr)]  md:justify-start md:items-center">
+                                <div className="hidden md:block  md:max-w-[30px]   overflow-hidden mr-[1rem]">
+                                        <img src={item.image} className='w-full' alt="" />
+                                </div>
+                                <p className='text-[0.85rem] md:min-w-[200px] '>{item.name}</p>
+                               
+                                <div className="leading-[0.85rem] md:min-w-[150px]">
+                                    <h5 className='text-[0.85rem] font-[600]  '>{item.amount}</h5>
+                                    
+                                    <p className={`text-[0.8rem] md:hidden flex items-center  ${item.status == 'Successful'? 'text-[var(--green-color)] ':'text-[var(--secondary-color)]'}`}><span><GoDotFill size={10} /></span>{item.status}</p>
+                                </div>
+                                {/* <div className="hidden md:flex   border-2"> */}
+                                <p className=' text-[0.85rem] whitespace-nowrap  w-full  min-w-[100%]'>{item.date}</p>
+                                <p className={`text-[0.85rem] hidden md:flex items-center  ${item.status == 'Successful'? 'text-[var(--green-color)] ':'text-[var(--secondary-color)]'}`}><span><GoDotFill size={10} /></span>{item.status}</p>
+                                {/* </div> */}
+                                
+                            </div>
+                        </li>
+                        )
+                    })
+                }

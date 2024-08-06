@@ -1,0 +1,29 @@
+{
+  // "email": "dynamite@gmail.com",
+  // "first_name": "Damilola",
+  // "last_name": "Lawrence",
+  "phone_number": "08163061766",
+  "whatsapp_phone_number": "08163061769",
+  "gender": "female",
+  // "home_address": "No 10 Agbayewa Estate Akure",
+  // "state": "Ondo State",
+  "country": "234",
+  // "position": "CEO",
+  // "salary_amount": 20000,
+  // "work_days_in_month":4,
+  // "work_hour_per_day": 8,
+  // "payslip_type": "wages",
+  "work_shift": "evening",
+  // "mode_of_identification_number": 12345133,
+  "mode_of_identification": "national_identification_number",
+  // "on_create_accept_terms_and_condition": true,
+  "workschedule": {
+    "sunday": true,
+    "monday": true,
+    "tuesday": true,
+    "wednesday": true,
+    "thursday": true,
+    "friday": false,
+    "saturday": false
+  }
+}

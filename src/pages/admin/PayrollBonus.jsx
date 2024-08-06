@@ -1,0 +1,41 @@
+import React, { useState } from 'react'
+import InnerButton from '../../components/shared/InnerButton'
+import PayrollDataTableAction from '../../components/admin/PayrollDataTableAction'
+import { payrolldata } from '../../utilities/admin/Data'
+import { handleSelectAll} from '../../utilities/admin/dataTableHandler'
+import Modals from '../../components/shared/Modals'
+import { TbCurrencyNaira } from 'react-icons/tb'
+import { RiErrorWarningLine } from 'react-icons/ri'
+import SelectField from '../../components/shared/SelectField'
+
+export default function PayrollBonus() {
+  const [isOpen, setIsOpen] = useState(false)
+  let [data, setData] = useState(JSON.parse(localStorage.getItem('payment'))?.results || [])
+  return (
+    <>
+    
+
+    
+
+
+    <div className=' max-w-[46rem] w-[100%] md:py-[2rem] md:pl-[3rem]'>
+      {/* <div className="bg-[#F5F5F5]  border-[1px]  w-[46rem] px-[1rem] py-[2rem] rounded-[4px]"> */}
+      <div className="bg-[#F5F5F5]   px-[1rem] py-[2rem] rounded-[4px]">
+        {/* HEADER SECTION */}
+        <div className="flex justify-between items-center">
+            <p className='font-[600] text-[0.85rem]'>Select staffs you want to pay bonus to</p>
+            <InnerButton text="Select all staffs" onClick={(e)=>handleSelectAll(e,data,setSelectAll,setData)} width='w-fit text-[0.85rem]' />
+        </div>
+
+        {/* PAYROLL DATA TABLE ACTION  */} 
+       
+        <PayrollDataTableAction buttonText= "Proceed to record bonus" setIsOpen={setIsOpen} data={data} type="type-2" itemsPerPage={6} />
+        
+
+      </div>
+
+    </div>
+    </>
+   
+  )
+}
