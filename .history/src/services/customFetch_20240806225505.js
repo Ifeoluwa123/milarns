@@ -1,43 +1,18 @@
 import axiosInstance from "./baseURL"
 import {redirect} from "react-router-dom"
  
-
-
-
-
-const logout = ()=>{
-    sessionStorage.clear()
-    localStorage.clear()
-    queryClient.clear();
-    // queryClient.removeQueries("adminData")
- 
-}
-
-// Function to notify the user
-const notifyUser = (message) => {
-    alert(message); // Replace with your preferred notification method
-};
-
-// Event listeners for online and offline status
-window.addEventListener('online', () => notifyUser('You are back online.'));
-window.addEventListener('offline', () => notifyUser('Internet connection lost.'));
-
+//To fetch default values for Oraganization / Administrator
 export const getOrganizationInfo = async () => {
-    // Check internet connectivity before making the request
-    if (!navigator.onLine) {
-        notifyUser('You are offline. Please check your internet connection.');
-        return;
-    }
     try {
         const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
-
+        
         if (adminInfo) {
             const options = {
                 headers: {
                     Authorization: 'Bearer ' + adminInfo.token.access
                 }
             };
-
+            
             const response = await axiosInstance.get('organization/' + adminInfo.organization.code, options);
             console.log(response);
             return response.data;
@@ -45,13 +20,8 @@ export const getOrganizationInfo = async () => {
             return redirect('/');
         }
     } catch (error) {
-        console.log("An error occurred while fetching organization info:", error);
-        
-        if (error.response && error.response.data.code === 'token_not_valid') {
-            return logout()
-        } else {
-            return redirect('/');
-        }
+        console.error("An error occurred while fetching organization info:", error.response.data.detail);
+        // Handle error appropriately
     }
 };
 

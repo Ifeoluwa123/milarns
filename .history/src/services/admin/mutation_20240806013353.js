@@ -274,14 +274,14 @@ export function useFormThree(){
         mutationKey:['updateFormThree'],
         mutationFn:(data)=>updateFormThree(data),
 
-        // onSuccess:(success)=>{
+        onSuccess:async (success)=>{
             
-        //  queryClient.invalidateQueries({ queryKey: ["mutiStepForm"] });
-        // },
-        // onError:(error)=>{
-        //     console.log(error);
+            return  await queryClient.invalidateQueries({ queryKey: ["mutiStepForm"] });
+        },
+        onError:(error)=>{
+            console.log(error);
          
-        // }
+        }
         
         
     })

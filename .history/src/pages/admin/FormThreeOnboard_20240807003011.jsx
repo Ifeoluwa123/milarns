@@ -74,10 +74,10 @@ const handleSubmit = (e)=>{
         {
           onSuccess:(success)=>{
           
-          // console.log(success)
+          console.log(success)
           if(success){
 
-            displayErrorMessages(success)
+            displayErrorMessages(success.response.message)
           }
           //  navigate('/onboarding_success')
           },

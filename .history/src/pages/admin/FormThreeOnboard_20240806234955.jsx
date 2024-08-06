@@ -55,36 +55,32 @@ const handleOnChange = (e) => {
 
 }
 
-// console.log(userData)
+console.log(userData)
 
-let {mutateAsync, isPending, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
+let {mutate, isPending,isLoading, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
 const queryClient = useQueryClient();
 
 
 let [errMsgs, setErrMsgs] = useState({})
 const handleSubmit = (e)=>{
     e.preventDefault()
-  // console.log(data)
-  // console.log(errMsgs)
+  console.log(data)
+  console.log(errMsgs)
     if(validateUserData(data, setErrMsgs )){
 
      
 
-     return mutateAsync(data,
+      mutate(data,
         {
           onSuccess:(success)=>{
           
-          // console.log(success)
-          if(success){
-
-            displayErrorMessages(success)
-          }
+          console.log(success)
           //  navigate('/onboarding_success')
           },
           onError:(error)=>{
               if(error){
-                // console.log(error.response.data.message)
-                displayErrorMessages(error.response?.data)
+                console.log(error.response.data.message)
+                displayErrorMessages(error.response.data)
               }
           },
     
@@ -105,7 +101,6 @@ const handleSubmit = (e)=>{
 }
 
 
-console.log(isPending)
 //Fetch Bank List
 let {data:bankList} = useBankNames()
 
@@ -116,9 +111,9 @@ if(isError){
   return <h1>errMsg</h1>
 }
 
-// if(isSuccess){
-//   navigate('/onboarding_success')
-// }
+if(isSuccess){
+  navigate('/onboarding_success')
+}
 
   return (
     <div className='bg-white  mt-[1rem] rounded-[4px] px-[1rem] md:px-[2rem] py-[2rem] max-w-[570px] w-full'>
@@ -131,7 +126,7 @@ if(isError){
             <p className='text-[var(--primary-color)]'>Enter your organization's salary account for staff payment, not your personal bank details. </p>
         </div> */}
 
-        <form >
+        <form onSubmit={handleSubmit}>
         <div className="mt-[2rem]">
               {/* <div className="md:grid   gap-x-[1rem] grid-cols-2 ">
                 <div className="md:my-0 my-[1rem]">
@@ -174,9 +169,9 @@ if(isError){
              
               <div className='flex flex-col justify-center mt-[-1px]'>
         <label htmlFor='bank_name' className="font-[600] text-[0.875rem] " >Bank name</label>
-        <select defaultValue = {data.bank_code} onChange={(e)=>setData({...data, bank_code:e.target.value})}   id='bank_code'  name="bank_code"  className={`focus:input-border  outline-none border-[0.9px] mt-[0.5rem] text-[0.85rem] px-[0.6rem]  py-[0.57rem] w-full  transition-[border] duration-[0.4s] rounded-[6px] ${errMsgs?.bank_code? 'border-red-500 ' : null}`}>
+        <select defaultValue = {data.bank_code} onChange={(e)=>setData({...data, bank_code:e.target.value})}   id='bank_code'  name="bank_code"  className={`focus:input-border  outline-none border-[0.9px] mt-[0.5rem] text-[0.85rem] px-[0.6rem]  py-[0.57rem] w-full  transition-[border] duration-[0.4s] rounded-[6px] ${errMsgs?.bank_code? 'border-red-500' : ''}`}>
         
-            <option value='' >--Select Bank--</option>
+            <option  >--Select Bank--</option>
             { 
                 bankList?.map((item, i)=>(
                     <option key={i} value={item.code}  >{item.name}</option>
@@ -263,7 +258,7 @@ if(isError){
               </div>
           
           <div className="mt-[1rem] mb-[1rem]">
-              <Button type="submit" onClick={handleSubmit} text={isPending? "Loading...": "Save & Submit" } padding="py-[0.6rem]" />
+              <Button type="submit" text={isPending? "Loading...": "Save & Submit" } padding="py-[0.6rem]" />
              
           </div>
           <div className="flex justify-center items-center">

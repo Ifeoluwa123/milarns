@@ -11,7 +11,7 @@ export default function Error404({status, message, desc}) {
                 <p className='uppercase mt-[1rem] text-[0.89rem]'>{desc? desc : "Sorry but the page you are looking for does not exist, have been removed, Name changed or is temporarily unavailable"}</p>
                <div className=" mt-[2rem]">
 
-               <Button text="Refresh" type="internal-link" path="/" />
+               <Button text="Reload" type="internal-link" path="/" />
                </div>
              
             </div>

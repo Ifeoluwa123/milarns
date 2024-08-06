@@ -1,7 +1,6 @@
 import React from 'react'
-import Button from '../components/shared/Button'
 
-export default function Error404({status, message, desc}) {
+export default function NoInternet() {
   return (
     <div className=' h-[100vh] flex justify-center items-center'>
     <div className=" max-w-[700px] w-full mx-auto ">
@@ -17,5 +16,5 @@ export default function Error404({status, message, desc}) {
             </div>
     </div>
 </div>
-  ) 
+  )
 }

@@ -55,9 +55,9 @@ const handleOnChange = (e) => {
 
 }
 
-// console.log(userData)
+console.log(userData)
 
-let {mutateAsync, isPending, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
+let {mutate, isPending,isLoading, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
 const queryClient = useQueryClient();
 
 
@@ -70,21 +70,17 @@ const handleSubmit = (e)=>{
 
      
 
-     return mutateAsync(data,
+      mutate(data,
         {
           onSuccess:(success)=>{
           
-          // console.log(success)
-          if(success){
-
-            displayErrorMessages(success)
-          }
+          console.log(success)
           //  navigate('/onboarding_success')
           },
           onError:(error)=>{
               if(error){
                 // console.log(error.response.data.message)
-                displayErrorMessages(error.response?.data)
+                displayErrorMessages(error.response.data)
               }
           },
     
@@ -105,7 +101,6 @@ const handleSubmit = (e)=>{
 }
 
 
-console.log(isPending)
 //Fetch Bank List
 let {data:bankList} = useBankNames()
 
@@ -131,7 +126,7 @@ if(isError){
             <p className='text-[var(--primary-color)]'>Enter your organization's salary account for staff payment, not your personal bank details. </p>
         </div> */}
 
-        <form >
+        <form onSubmit={handleSubmit}>
         <div className="mt-[2rem]">
               {/* <div className="md:grid   gap-x-[1rem] grid-cols-2 ">
                 <div className="md:my-0 my-[1rem]">
@@ -263,7 +258,7 @@ if(isError){
               </div>
           
           <div className="mt-[1rem] mb-[1rem]">
-              <Button type="submit" onClick={handleSubmit} text={isPending? "Loading...": "Save & Submit" } padding="py-[0.6rem]" />
+              <Button type="submit" text={isPending? "Loading...": "Save & Submit" } padding="py-[0.6rem]" />
              
           </div>
           <div className="flex justify-center items-center">

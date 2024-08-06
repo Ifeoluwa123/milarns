@@ -13,21 +13,8 @@ const logout = ()=>{
  
 }
 
-// Function to notify the user
-const notifyUser = (message) => {
-    alert(message); // Replace with your preferred notification method
-};
-
-// Event listeners for online and offline status
-window.addEventListener('online', () => notifyUser('You are back online.'));
-window.addEventListener('offline', () => notifyUser('Internet connection lost.'));
-
+//To fetch default values for Oraganization / Administrator
 export const getOrganizationInfo = async () => {
-    // Check internet connectivity before making the request
-    if (!navigator.onLine) {
-        notifyUser('You are offline. Please check your internet connection.');
-        return;
-    }
     try {
         const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
 

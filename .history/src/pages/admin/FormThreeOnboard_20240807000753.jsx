@@ -57,7 +57,7 @@ const handleOnChange = (e) => {
 
 // console.log(userData)
 
-let {mutateAsync, isPending, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
+let {mutate, isPending,isLoading, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
 const queryClient = useQueryClient();
 
 
@@ -70,21 +70,21 @@ const handleSubmit = (e)=>{
 
      
 
-     return mutateAsync(data,
+      mutate(data,
         {
           onSuccess:(success)=>{
           
-          // console.log(success)
+          console.log(success)
           if(success){
 
-            displayErrorMessages(success)
+            displayErrorMessages(success.response)
           }
           //  navigate('/onboarding_success')
           },
           onError:(error)=>{
               if(error){
                 // console.log(error.response.data.message)
-                displayErrorMessages(error.response?.data)
+                displayErrorMessages(error.response.data)
               }
           },
     
@@ -105,7 +105,6 @@ const handleSubmit = (e)=>{
 }
 
 
-console.log(isPending)
 //Fetch Bank List
 let {data:bankList} = useBankNames()
 
