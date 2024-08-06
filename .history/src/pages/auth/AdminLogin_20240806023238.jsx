@@ -24,7 +24,7 @@ export default function AdminLogin() {
   
         
       if(adminInfo.token.access !== null && adminInfo.organization.account_status === "pending"  ){
-          return <Navigate to="/onboarding_1" />
+          return <Navigate to="/onboarding" />
       
       }
 
