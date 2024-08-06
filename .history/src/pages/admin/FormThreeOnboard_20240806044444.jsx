@@ -10,7 +10,6 @@ import Error404 from '../Error404';
 import validateUserData from '../../utilities/validateUserData';
 import capitalizeFirstLetter from '../../utilities/capitalizeFirstLetter';
 import SelectField from '../../components/shared/SelectField';
-import displayErrorMessages from '../../components/shared/displayErrorMessages';
 export default function FormThreeOnboarding() {
   let navigate = useNavigate()
   
@@ -26,9 +25,9 @@ export default function FormThreeOnboarding() {
     inputFields = {
       // first_name:userData.bankinformation.first_name,
       // last_name:userData.bankinformation.last_name,
-      bank_code:userData.bankinformation.bank_code ? userData.bankinformation.bank_code : '',
-      account_number:userData.bankinformation.account_number ? userData.bankinformation.account_number : '',
-      phone_number:userData.bankinformation.phone_number ? userData.bankinformation.phone_number : '',
+      bank_code:userData.bankinformation.bank_code,
+      account_number:userData.bankinformation.account_number,
+      account_name:userData.bankinformation.account_name,
       bvn:null
 
 
@@ -39,16 +38,15 @@ export default function FormThreeOnboarding() {
       return <Error404 status={error.response.status} message={error.response.data.message} desc ={error.message} />
   }
 
-// console.log( userData)
+console.log( userData)
   
 let [data, setData] = useState(inputFields)
 
 const handleOnChange = (e) => {
 
   let {name, value} = e.target
- 
 
- setData({
+  setData({
     ...data, 
     [name]:value
   })
@@ -63,31 +61,25 @@ const queryClient = useQueryClient();
 let [errMsgs, setErrMsgs] = useState({})
 const handleSubmit = (e)=>{
     e.preventDefault()
-  
+    
     if(validateUserData(data, setErrMsgs )){
 
-      // console.log(data)
+      
 
-      mutate(data,
-        {
-          onSuccess:(response)=>{
+      // mutate({orgCode:userData.code, data: data},
+      //   {
+      //     onSuccess:(response)=>{
           
           
-           navigate('/onboarding_success')
-          },
-          onError:(error)=>{
-              if(error){
-                console.log(error.response.data.message)
-                displayErrorMessages(error)
-              }
-          },
+      //      navigate('/onboarding_success')
+      //     },
     
-          onSettled: async function(){
+      //     onSettled: async function(){
          
-             return queryClient.invalidateQueries({ queryKey: ["mutiStepForm"] });
+      //        return queryClient.invalidateQueries({ queryKey: ["mutiStepForm"] });
           
-          }
-        })
+      //     }
+      //   })
 
 
     }else{

@@ -10,7 +10,6 @@ import Error404 from '../Error404';
 import validateUserData from '../../utilities/validateUserData';
 import capitalizeFirstLetter from '../../utilities/capitalizeFirstLetter';
 import SelectField from '../../components/shared/SelectField';
-import displayErrorMessages from '../../components/shared/displayErrorMessages';
 export default function FormThreeOnboarding() {
   let navigate = useNavigate()
   
@@ -48,7 +47,7 @@ const handleOnChange = (e) => {
   let {name, value} = e.target
  
 
- setData({
+  setData({
     ...data, 
     [name]:value
   })
@@ -78,7 +77,6 @@ const handleSubmit = (e)=>{
           onError:(error)=>{
               if(error){
                 console.log(error.response.data.message)
-                displayErrorMessages(error)
               }
           },
     

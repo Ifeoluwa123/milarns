@@ -48,7 +48,7 @@ const handleOnChange = (e) => {
   let {name, value} = e.target
  
 
- setData({
+  setData({
     ...data, 
     [name]:value
   })

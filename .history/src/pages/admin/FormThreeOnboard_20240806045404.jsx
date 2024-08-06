@@ -10,7 +10,6 @@ import Error404 from '../Error404';
 import validateUserData from '../../utilities/validateUserData';
 import capitalizeFirstLetter from '../../utilities/capitalizeFirstLetter';
 import SelectField from '../../components/shared/SelectField';
-import displayErrorMessages from '../../components/shared/displayErrorMessages';
 export default function FormThreeOnboarding() {
   let navigate = useNavigate()
   
@@ -46,9 +45,9 @@ let [data, setData] = useState(inputFields)
 const handleOnChange = (e) => {
 
   let {name, value} = e.target
- 
+  console.log(name)
 
- setData({
+  setData({
     ...data, 
     [name]:value
   })
@@ -66,28 +65,22 @@ const handleSubmit = (e)=>{
   
     if(validateUserData(data, setErrMsgs )){
 
-      // console.log(data)
+      console.log(data)
 
-      mutate(data,
-        {
-          onSuccess:(response)=>{
+      // mutate({orgCode:userData.code, data: data},
+      //   {
+      //     onSuccess:(response)=>{
           
           
-           navigate('/onboarding_success')
-          },
-          onError:(error)=>{
-              if(error){
-                console.log(error.response.data.message)
-                displayErrorMessages(error)
-              }
-          },
+      //      navigate('/onboarding_success')
+      //     },
     
-          onSettled: async function(){
+      //     onSettled: async function(){
          
-             return queryClient.invalidateQueries({ queryKey: ["mutiStepForm"] });
+      //        return queryClient.invalidateQueries({ queryKey: ["mutiStepForm"] });
           
-          }
-        })
+      //     }
+      //   })
 
 
     }else{

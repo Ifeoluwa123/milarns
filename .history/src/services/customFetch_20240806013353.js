@@ -2,28 +2,23 @@ import axiosInstance from "./baseURL"
 import {redirect} from "react-router-dom"
  
 //To fetch default values for Oraganization / Administrator
-export const getOrganizationInfo = async () => {
-    try {
-        const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
-        
-        if (adminInfo) {
-            const options = {
-                headers: {
-                    Authorization: 'Bearer ' + adminInfo.token.access
-                }
-            };
-            
-            const response = await axiosInstance.get('organization/' + adminInfo.organization.code, options);
-            console.log(response);
-            return response.data;
-        } else {
-            return redirect('/');
+ export const getOrganizationInfo = async ()=>{
+
+    const adminInfo = JSON.parse(localStorage.getItem('adminInfo'))
+    if(adminInfo){
+       
+        const options =  {
+            headers:{
+                Authorization : 'Bearer ' + adminInfo.token.access
+            }
         }
-    } catch (error) {
-        console.error("An error occurred while fetching organization info:", error);
-        // Handle error appropriately
+        const response = await axiosInstance.get('organization/'+adminInfo.organization.code, options )
+        return response.data 
     }
-};
+    else{
+       return redirect('/')
+    }
+ }
 
 
 
