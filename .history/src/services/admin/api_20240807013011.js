@@ -116,8 +116,7 @@ export const updateFormThree = async (data)=>{
 }
 
 // Verify Forma Three OTP Code on Modal Box
-// {{baseUrl}}/organization/{{organization_code}}/bank/bvn/finalize/
-export const verifyFormThreeOTPCode = async (otpCode)=>{
+export const verifyFormThreeOTPCode = async (data)=>{
 
     const adminInfo = JSON.parse(localStorage.getItem('adminInfo'))
 
@@ -129,7 +128,7 @@ export const verifyFormThreeOTPCode = async (otpCode)=>{
             }
         }
         
-        const response = await axiosInstance.patch('organization/'+adminInfo.organization.code+'/bank/bvn/finalize/', otpCode, accessToken)
+        const response = await axiosInstance.patch('organization/'+adminInfo.organization.code+'/bank/', data, accessToken)
         return response.data
     }else{
         return redirect("/")

@@ -80,7 +80,6 @@ const handleSubmit = (e)=>{
           
           console.log(success)
           if(success){
-            setMsg(success?.message)
             setIsopens(true)
             // displayErrorMessages(success)
           }
@@ -127,7 +126,7 @@ if(isError){
 
   return (
     <div className='bg-white  mt-[1rem] rounded-[4px] px-[1rem] md:px-[2rem] py-[2rem] max-w-[570px] w-full'>
-      <ModalBankOTPVerification msg={msg} phoneNo = {data?.phone_number} isOpens={isOpens} setIsopens={setIsopens} />
+      <ModalBankOTPVerification phoneNo = {data?.phone_number} isOpens={isOpens} setIsopens={setIsopens} />
         <div className="flex justify-between items-center text-[0.9rem]">
             <h1 className='font-[600]'>Verify Identity</h1>
             <p className='text-[var(--primary-color)] uppercase'>Step 3 / 3</p>

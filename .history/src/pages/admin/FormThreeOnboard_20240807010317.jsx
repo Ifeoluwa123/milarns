@@ -61,11 +61,8 @@ const handleOnChange = (e) => {
 let {mutateAsync, isPending, isSuccess,isError:isErrors, error:errMsg} = useFormThree()
 const queryClient = useQueryClient();
 
-let [isOpens, setIsopens] = useState(false)
-
 
 let [errMsgs, setErrMsgs] = useState({})
-let [msg, setMsg] = useState()
 const handleSubmit = (e)=>{
     e.preventDefault()
   // console.log(data)
@@ -78,10 +75,9 @@ const handleSubmit = (e)=>{
         {
           onSuccess:(success)=>{
           
-          console.log(success)
+          // console.log(success)
           if(success){
-            setMsg(success?.message)
-            setIsopens(true)
+              
             // displayErrorMessages(success)
           }
           //  navigate('/onboarding_success')
@@ -127,7 +123,7 @@ if(isError){
 
   return (
     <div className='bg-white  mt-[1rem] rounded-[4px] px-[1rem] md:px-[2rem] py-[2rem] max-w-[570px] w-full'>
-      <ModalBankOTPVerification msg={msg} phoneNo = {data?.phone_number} isOpens={isOpens} setIsopens={setIsopens} />
+      <ModalBankOTPVerification />
         <div className="flex justify-between items-center text-[0.9rem]">
             <h1 className='font-[600]'>Verify Identity</h1>
             <p className='text-[var(--primary-color)] uppercase'>Step 3 / 3</p>
