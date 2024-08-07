@@ -41,9 +41,14 @@ export default function StaffListDataTable({ addNewstaffHandler,handleExport }) 
     let itemsPerPage = 6;
     let {data:staffList, isLoading, error, isError } = useAllResgisteredEmployees()
 
-   
-
-    const [data, setData] = useState(staffList.results.map(row => ({ ...row, checked: false })))
+    if(isLoading){
+      return <h1>Loading...</h1>
+    }
+    if(isError){
+      return <h1>{error}</h1>
+    }
+    console.log(staffList.results)
+    const [data, setData] = useState(staffList.results)
 
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
@@ -133,23 +138,13 @@ const [selectAll, setSelectAll] = useState(false);
 const handleSelectAll = () => {
   const newSelectAll = !selectAll;
   const newRows = data.map(row => ({ ...row, checked: newSelectAll }));
-  setData(newRows);
+  setRows(newRows);
   setSelectAll(newSelectAll);
-  console.log(newRows)
 };
 
 
-const handleRowChange = (staffCode) => {
-  console.log(staffCode)
-  // const newRows = data.map(item => 
-  //   item.code == staffCode ? { ...item, checked: !item.checked } : item
-  // );
-  // setData(newRows);
-  // setSelectAll(data.filter(item => item.checked && item.code ));
-};
 
 
-console.log(selectAll)
 
 
 
@@ -202,7 +197,7 @@ console.log(selectAll)
                 <table  className='rounded-md mb-[100px]   text-left text-[0.85rem] border-[0.4px]' >
               <thead   >
                  <tr  >
-                     <th className='z-[20]'><Checkbox name="selectAll" onChange={handleSelectAll}  /></th>
+                     <th className='z-[20]'><Checkbox name="selectAll" onChange={ handleSelectAll}  /></th>
                      <th className='z-[20]'>Name</th>
                      <th className='hidden md:table-cell z-[20]'>Position</th>
                      <th className='hidden md:table-cell z-[20]'>Employee ID</th>
@@ -219,7 +214,7 @@ console.log(selectAll)
                          return(
                       <React.Fragment key={i}>
                  <tr    className='relative z-[10]  hover:bg-[--grey-color] rounded-md hover:shadow-[2px_2px_1px_2px_rgba(0,0,0,1)] '>
-                         <td ><Checkbox key={item.code}  checked={item.checked} onChange={()=>handleRowChange(item.code)}  /></td>
+                         <td ><Checkbox id={item.id}  /></td>
                          <td className='flex  pl-0 ml-0 items-center gap-x-0 md:gap-x-[1rem] sm:min-w-[200px] min-w-fit'>
                            
                            {

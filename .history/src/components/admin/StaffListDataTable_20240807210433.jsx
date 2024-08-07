@@ -140,16 +140,15 @@ const handleSelectAll = () => {
 
 
 const handleRowChange = (staffCode) => {
-  console.log(staffCode)
-  // const newRows = data.map(item => 
-  //   item.code == staffCode ? { ...item, checked: !item.checked } : item
-  // );
-  // setData(newRows);
-  // setSelectAll(data.filter(item => item.checked && item.code ));
+  const newRows = data.map(item => 
+    item.code === staffCode ? { ...row, checked: !item.checked } : row
+  );
+  setRows(newRows);
+  setSelectAll(newRows.every(row => row.checked));
 };
 
 
-console.log(selectAll)
+
 
 
 

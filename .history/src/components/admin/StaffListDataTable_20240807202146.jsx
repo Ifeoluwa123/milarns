@@ -26,24 +26,19 @@ import { useDeleteEmployee } from '../../services/admin/mutation'
 
 
 import {useQueryClient} from"@tanstack/react-query"
-import { useAllResgisteredEmployees } from '../../services/admin/queries'
 
 
 
-export default function StaffListDataTable({ addNewstaffHandler,handleExport }) {
+export default function StaffListDataTable({staffList, itemsPerPage,addNewstaffHandler,handleExport }) {
   const [selectedUser, setSelectedUser] = useState(null);
     let [currentPage, setCurrentPage] = useState(1);
-    // let [selectedRows, setSelectedRows] = useState([]);
+    let [selectedRows, setSelectedRows] = useState([]);
     const [deleteRecord, setDeleteRecord] = useState(false)
     const [deactivateRecord, setDeactivateRecord] = useState(false)
-     //For checbox
-    // const [bulkDelete, setBulkDelete] = useState(false)
-    let itemsPerPage = 6;
-    let {data:staffList, isLoading, error, isError } = useAllResgisteredEmployees()
-
-   
-
-    const [data, setData] = useState(staffList.results.map(row => ({ ...row, checked: false })))
+    const [selectAll, setSelectAll] = useState(false); //For checbox
+    const [bulkDelete, setBulkDelete] = useState(false)
+    const [data, setData] = useState(staffList)
+ 
 
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
@@ -128,28 +123,12 @@ let handleDeactivateUser =  ()=>{
 
 }
 
-const [selectAll, setSelectAll] = useState(false);  
-
-const handleSelectAll = () => {
-  const newSelectAll = !selectAll;
-  const newRows = data.map(row => ({ ...row, checked: newSelectAll }));
-  setData(newRows);
-  setSelectAll(newSelectAll);
-  console.log(newRows)
-};
 
 
-const handleRowChange = (staffCode) => {
-  console.log(staffCode)
-  // const newRows = data.map(item => 
-  //   item.code == staffCode ? { ...item, checked: !item.checked } : item
-  // );
-  // setData(newRows);
-  // setSelectAll(data.filter(item => item.checked && item.code ));
-};
+const [selectAll, setSelectAll] = useState(false);
 
 
-console.log(selectAll)
+
 
 
 
@@ -202,7 +181,7 @@ console.log(selectAll)
                 <table  className='rounded-md mb-[100px]   text-left text-[0.85rem] border-[0.4px]' >
               <thead   >
                  <tr  >
-                     <th className='z-[20]'><Checkbox name="selectAll" onChange={handleSelectAll}  /></th>
+                     <th className='z-[20]'><Checkbox name="selectAll"  /></th>
                      <th className='z-[20]'>Name</th>
                      <th className='hidden md:table-cell z-[20]'>Position</th>
                      <th className='hidden md:table-cell z-[20]'>Employee ID</th>
@@ -219,7 +198,7 @@ console.log(selectAll)
                          return(
                       <React.Fragment key={i}>
                  <tr    className='relative z-[10]  hover:bg-[--grey-color] rounded-md hover:shadow-[2px_2px_1px_2px_rgba(0,0,0,1)] '>
-                         <td ><Checkbox key={item.code}  checked={item.checked} onChange={()=>handleRowChange(item.code)}  /></td>
+                         <td ><Checkbox id={item.id} checked={item.isChecked} onChange={()=>handleSingleCheckboxChange(item.code, data, setSelectAll,setData )} /></td>
                          <td className='flex  pl-0 ml-0 items-center gap-x-0 md:gap-x-[1rem] sm:min-w-[200px] min-w-fit'>
                            
                            {
@@ -379,7 +358,7 @@ console.log(selectAll)
                     </button>
                 </div> */}
 
-               {/* <div className={` ${bulkDelete? 'visible opacity-1': 'invisible opacity-0 '} z-[100] transition-opacity  duration-[0.5s] absolute bottom-[110%] rounded-[4px] left-[2.7%]    bg-[var(--grey-color)] w-fit  shadow-[2px_2px_1px_2px_rgba(0,0,0,1)]`}>
+               <div className={` ${bulkDelete? 'visible opacity-1': 'invisible opacity-0 '} z-[100] transition-opacity  duration-[0.5s] absolute bottom-[110%] rounded-[4px] left-[2.7%]    bg-[var(--grey-color)] w-fit  shadow-[2px_2px_1px_2px_rgba(0,0,0,1)]`}>
                <TableMenuList  items={[
                   // {icon:<CiUser size={15} />, text: "Activate staffs"},     
                   // {icon:<LiaUserAltSlashSolid size={15} />, text: "Deactivate staffs", type:"", actionType:"deactivate"},      
@@ -388,7 +367,7 @@ console.log(selectAll)
                   // {icon:<TbFileExport size={15}  />, text: "Export data as CSV" , type:"external_link", path:"https://wagepull.com", target:'_blank', actionType:"delete"}      
                 ]} 
                 style=" px-[0.4rem] w-[250px] text-[0.85rem]"  />
-               </div> */}
+               </div>
 
                 
              </div>

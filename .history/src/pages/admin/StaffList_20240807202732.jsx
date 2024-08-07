@@ -109,7 +109,7 @@ export default function StaffList() {
       data.results.length> 0 ? 
       // <AllStaffListTable addNewstaffHandler={addNewstaffHandler} /> : 
       <StaffListDataTable
-      addNewstaffHandler={addNewstaffHandler}
+      // addNewstaffHandler={addNewstaffHandler}
         
         // itemsPerPage={6}
 

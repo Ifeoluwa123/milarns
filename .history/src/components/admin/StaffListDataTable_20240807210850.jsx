@@ -43,7 +43,7 @@ export default function StaffListDataTable({ addNewstaffHandler,handleExport }) 
 
    
 
-    const [data, setData] = useState(staffList.results.map(row => ({ ...row, checked: false })))
+    const [data, setData] = useState(staffList.results.map(row => ({ ...row, checked: true })))
 
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
@@ -142,7 +142,7 @@ const handleSelectAll = () => {
 const handleRowChange = (staffCode) => {
   console.log(staffCode)
   // const newRows = data.map(item => 
-  //   item.code == staffCode ? { ...item, checked: !item.checked } : item
+  //   item.code === staffCode ? { ...data, checked: !item.checked } : item
   // );
   // setData(newRows);
   // setSelectAll(data.filter(item => item.checked && item.code ));

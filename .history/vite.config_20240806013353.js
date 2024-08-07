@@ -8,5 +8,5 @@ export default defineConfig({
   //   host:'192.168.137.220'
   //   // host:'https://app.wagepull.com/'
   // }
-  base:"/milarn"
+  // base:"/wagepull"
 })

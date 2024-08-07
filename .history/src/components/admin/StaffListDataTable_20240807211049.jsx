@@ -141,9 +141,9 @@ const handleSelectAll = () => {
 
 const handleRowChange = (staffCode) => {
   console.log(staffCode)
-  // const newRows = data.map(item => 
-  //   item.code == staffCode ? { ...item, checked: !item.checked } : item
-  // );
+  const newRows = paginatedData.map(item => 
+    item.code === staffCode ? { ...data, checked: !item.checked } : paginatedData
+  );
   // setData(newRows);
   // setSelectAll(data.filter(item => item.checked && item.code ));
 };

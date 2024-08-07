@@ -140,16 +140,15 @@ const handleSelectAll = () => {
 
 
 const handleRowChange = (staffCode) => {
-  console.log(staffCode)
-  // const newRows = data.map(item => 
-  //   item.code == staffCode ? { ...item, checked: !item.checked } : item
-  // );
-  // setData(newRows);
-  // setSelectAll(data.filter(item => item.checked && item.code ));
+  const newRows = rows.map(row => 
+    row.id === id ? { ...row, checked: !row.checked } : row
+  );
+  setRows(newRows);
+  setSelectAll(newRows.every(row => row.checked));
 };
 
 
-console.log(selectAll)
+
 
 
 
@@ -219,7 +218,7 @@ console.log(selectAll)
                          return(
                       <React.Fragment key={i}>
                  <tr    className='relative z-[10]  hover:bg-[--grey-color] rounded-md hover:shadow-[2px_2px_1px_2px_rgba(0,0,0,1)] '>
-                         <td ><Checkbox key={item.code}  checked={item.checked} onChange={()=>handleRowChange(item.code)}  /></td>
+                         <td ><Checkbox id={item.id} onChange={()=>handleRowChange(item.code)}  /></td>
                          <td className='flex  pl-0 ml-0 items-center gap-x-0 md:gap-x-[1rem] sm:min-w-[200px] min-w-fit'>
                            
                            {
