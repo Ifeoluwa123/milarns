@@ -140,7 +140,7 @@ const [selectAll, setSelectAll] = useState(false);
 const handleSelectAll = () => {
   const newSelectAll = !selectAll;
   const newRows = staffList.results.map(row => ({ ...row, checked: newSelectAll }));
-  setData(newRows);
+  // setData(newRows);
   setSelectAll(newSelectAll);
   console.log(newRows)
 };

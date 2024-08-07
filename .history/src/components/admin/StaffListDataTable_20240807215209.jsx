@@ -47,13 +47,11 @@ export default function StaffListDataTable({ addNewstaffHandler,handleExport }) 
     const [data, setData] = useState(staffList.results)
 
     useEffect(()=>{
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
-    },[staffList.results])
+      const updatedItems = 
+    },[])
 
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
-    // let paginatedData = staffList.results.map(item => ({ ...item, checked: false })).slice(startIndex, endIndex)
     let paginatedData = data.slice(startIndex, endIndex)
     const totalPages = Math.ceil(data.length / itemsPerPage)
 
@@ -139,7 +137,7 @@ const [selectAll, setSelectAll] = useState(false);
 
 const handleSelectAll = () => {
   const newSelectAll = !selectAll;
-  const newRows = staffList.results.map(row => ({ ...row, checked: newSelectAll }));
+  const newRows = data.map(row => ({ ...row, checked: newSelectAll }));
   setData(newRows);
   setSelectAll(newSelectAll);
   console.log(newRows)

@@ -96,17 +96,17 @@ export default function AddManualOnboardForm() {
         }
 
 
-        // const handlePhoneChange = (value, data, event, formattedValue)=>{
-        //     event.preventDefault()
-        //     // console.log(value.slice(3))
-        //     setEmployeeData(prev=>({
-        //         ...prev,
-        //         [event.target.name]: value.slice(3)
-        //     }))
+        const handlePhoneChange = (value, data, event, formattedValue)=>{
+            event.preventDefault()
+            // console.log(value.slice(3))
+            setEmployeeData(prev=>({
+                ...prev,
+                [event.target.name]: value.slice(3)
+            }))
         
-        //     // console.log(event.target.name)
-        //     // console.log(value)
-        // }
+            // console.log(event.target.name)
+            // console.log(value)
+        }
 
 
 
@@ -274,16 +274,15 @@ const handleSubmit = (e) => {
                             <div className=" w-full mb-[2rem] md:mb-0">
                             <TextField
                                 label="Phone Number"
-                                placeholder="e.g.09066******"
+                                placeholder="e.g.Johnson"
                                 // onClick={''}
                                 type="text"
                                 paddingY="py-[0.5rem]"
                                 fontSize="font-[500]"
                                 textSize="text-[0.875rem]"
-                                name="phone_number"
+                                name="last_name"
                                 onChange={handleOnChange}
-                                value={employeeData.phone_number}
-                                errMsg={errMsgs.phone_number && errMsgs.phone_number}
+                                errMsg={errMsgs.last_name && errMsgs.last_name}
                             />
                             {/* <TextField
                                 label="Phone Number"
@@ -305,19 +304,6 @@ const handleSubmit = (e) => {
                                 label="Whatsapp Number"
                                 placeholder="e.g.09066******"
                                 // onClick={''}
-                                type="text"
-                                paddingY="py-[0.5rem]"
-                                fontSize="font-[500]"
-                                textSize="text-[0.875rem]"
-                                name="whatsapp_phone_number"
-                                onChange={handleOnChange}
-                                value={employeeData.whatsapp_phone_number}
-                                errMsg={errMsgs.whatsapp_phone_number && errMsgs.whatsapp_phone_number}
-                            />
-                            {/* <TextField
-                                label="Whatsapp Number"
-                                placeholder="e.g.09066******"
-                                // onClick={''}
                                 type="number"
                                 paddingY="py-[0.5rem]"
                                 fontSize="font-[500]"
@@ -326,7 +312,7 @@ const handleSubmit = (e) => {
                                 onChange={handlePhoneChange}
                                 value={employeeData.whatsapp_phone_number}
                                 errMsg={errMsgs.whatsapp_phone_number && errMsgs.whatsapp_phone_number}
-                            /> */}
+                            />
                             </div>
                             <div className=" w-full mb-[2rem] md:mb-0">
                             <TextField

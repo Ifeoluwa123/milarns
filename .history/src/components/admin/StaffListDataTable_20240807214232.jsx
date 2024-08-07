@@ -43,17 +43,10 @@ export default function StaffListDataTable({ addNewstaffHandler,handleExport }) 
 
    
 
-    // const [data, setData] = useState(staffList.results.map(row => ({ ...row, checked: false })))
-    const [data, setData] = useState(staffList.results)
-
-    useEffect(()=>{
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
-    },[staffList.results])
+    const [data, setData] = useState(staffList.results.map(row => ({ ...row, checked: false })))
 
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
-    // let paginatedData = staffList.results.map(item => ({ ...item, checked: false })).slice(startIndex, endIndex)
     let paginatedData = data.slice(startIndex, endIndex)
     const totalPages = Math.ceil(data.length / itemsPerPage)
 
@@ -139,7 +132,7 @@ const [selectAll, setSelectAll] = useState(false);
 
 const handleSelectAll = () => {
   const newSelectAll = !selectAll;
-  const newRows = staffList.results.map(row => ({ ...row, checked: newSelectAll }));
+  const newRows = data.map(row => ({ ...row, checked: newSelectAll }));
   setData(newRows);
   setSelectAll(newSelectAll);
   console.log(newRows)
@@ -226,7 +219,7 @@ console.log(selectAll)
                          return(
                       <React.Fragment key={i}>
                  <tr    className='relative z-[10]  hover:bg-[--grey-color] rounded-md hover:shadow-[2px_2px_1px_2px_rgba(0,0,0,1)] '>
-                         <td ><Checkbox   checked={item.checked} onChange={()=>handleRowChange(item)}  /></td>
+                         <td ><Checkbox key={item.code} id={item.code}  checked={item.checked} onChange={()=>handleRowChange(item.code)}  /></td>
                          <td className='flex  pl-0 ml-0 items-center gap-x-0 md:gap-x-[1rem] sm:min-w-[200px] min-w-fit'>
                            
                            {
