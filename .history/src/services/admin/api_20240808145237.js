@@ -508,6 +508,8 @@ export const requestCard = async (staffCode)=>{
 
 // To Delete Staff Data
 export const deleteEmployeeData = async (staffCode)=>{
+
+    console.log(staffCode)
    
 
     const adminInfo = JSON.parse(localStorage.getItem('adminInfo'))

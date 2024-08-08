@@ -244,10 +244,7 @@ const handleBulkProceed = ()=>{
             
             // if(success){
               AlertMessages('Success', 'Staff Record Deleted', 'success')
-              setDeleteBulk(false)
-              setSelectAll(false)
-              const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-              setData(updatedItems)
+              setDeleteRecord(false)
             // }
         },
         onError:(error)=>{

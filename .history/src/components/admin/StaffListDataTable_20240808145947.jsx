@@ -115,16 +115,20 @@ export default function StaffListDataTable({ addNewstaffHandler,handleExport }) 
 
 // Single Staff Delete
 let {mutate:deleteMutation, isPending:isDeletePending} = useDeleteEmployee()
-// const {mutate} = useDeleteEmployee() 
+// const {mutate} = useDeleteEmployee()
 let handleDeleteUser =  ()=>{
 
+    // let formData = new FormData()
+    // formData.append("codes", [selectedUser])
+    // deleteMutation({codes:[selectedUser]}, {
     deleteMutation([selectedUser], {
       onSuccess:(success)=>{
-          
-          // if(success){
-            AlertMessages('Success', 'Staff Record Deleted', 'success')
+          console.log(success);
+          setDeleteRecord(false)
+          if(success){
             setDeleteRecord(false)
-          // }
+            AlertMessages('Success', 'Staff Record Deleted', 'success')
+          }
       },
       onError:(error)=>{
           console.log(error);
@@ -132,7 +136,14 @@ let handleDeleteUser =  ()=>{
     })
 
 
-
+    // mutate([staffCode.code],{
+    //   onSuccess:(res)=>{
+    //     console.log(res)
+    //   },
+    //   onError:(err)=>{
+    //       console.log(err)
+    //   }
+    // })
 }
 
 
@@ -238,22 +249,7 @@ const handleBulkProceed = ()=>{
 }
 
     const handleBulkDeleteUser = ()=>{
-     
-      deleteMutation(selectedUsers, {
-        onSuccess:(success)=>{
-            
-            // if(success){
-              AlertMessages('Success', 'Staff Record Deleted', 'success')
-              setDeleteBulk(false)
-              setSelectAll(false)
-              const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-              setData(updatedItems)
-            // }
-        },
-        onError:(error)=>{
-            console.log(error);
-        }
-      })
+      console.log(selectedUsers)
     }
 
 
@@ -262,7 +258,7 @@ const handleBulkProceed = ()=>{
 
 
     const handleBulkActivateUser = ()=>{
-
+console.log(selectedUsers)
 mutateActivate(selectedUsers,{
   onSuccess:(success)=>{
    
@@ -383,7 +379,7 @@ mutateDeactivate(selectedUsers,{
                           </div>
 
                           <div className="flex items-center gap-x-[2rem] mt-[1rem]">
-                          <Button onClick={handleBulkDeleteUser} text={`${isDeletePending? 'Loading...': 'Yes Proceed'}`} width="w-fit" padding="py-[0.5rem] px-[1.7rem]" />
+                          <Button onClick={handleBulkDeleteUser} text="Yes Proceed" width="w-fit" padding="py-[0.5rem] px-[1.7rem]" />
                           <OutlineButton onClick={()=>setDeleteBulk(false)} text="Cancel"  />
                           </div>
         </Modals>

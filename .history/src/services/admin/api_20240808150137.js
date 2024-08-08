@@ -519,9 +519,9 @@ export const deleteEmployeeData = async (staffCode)=>{
             Authorization : 'Bearer ' + adminInfo.token.access,
             
         },
-        data:{
+      
             codes:staffCode
-        }
+        
     }
     const response = await axiosInstance.delete('organization/'+adminInfo.organization.code+'/staff/',accessToken)
 
