@@ -1,0 +1,364 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap'); */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --primary-color:#008080;
+
+    --progress-bar-color:#76D9D9;
+    --secondary-color:#FE5E55;
+    --secondary-color-hover:#cc4943;
+    --secondary-color-hover-light:#ee706aad;
+    --secondary-color-hover-lighter: #FDEAEA;
+    --green-color:#21C45D;
+
+    --grey-color:#F5F5F5;
+    
+}
+
+
+body{
+    font-family: lato;
+   
+}
+
+
+.pointer-events-none.absolute.inset-y-0 svg{
+    display: none !important;
+   
+}
+
+/* SWEET ALERT */
+  /* Custom button background color */
+  .swal2-popup .swal2-actions .swal2-styled:not([disabled]) {
+    background-color: var(--secondary-color); /* Your desired background color */
+    outline: none;
+    border: none;
+  }
+
+  /* Custom button hover background color */
+  .swal2-popup .swal2-actions .swal2-styled:not([disabled]):hover {
+    background-color: var(--secondary-color-hover); /* Your desired hover background color */
+  }
+/* SWEET ALERT */
+
+
+ /* CHECKBOX STYLE */
+ .check-input:checked + .checkbox{
+    background-color: #26bfbf !important;
+    border:2px solid #26bfbf;
+}
+.checkbox svg{
+    width: 20px !important;
+    height: 20px !important;
+    /* border:2px solid red; */
+    /* display: block !important; */
+}
+
+/* .check-input:checked + .checkbox svg path{
+    stroke-dasharray: 500 !important;
+    stroke-dashoffset: 500 !important;
+    stroke:#fff !important;
+    stroke-width: 3 !important;
+    animation:checks 0.3s forwards !important;
+} */
+
+.checkbox svg path{
+    stroke-dasharray: 500 !important;
+    stroke-dashoffset: 500 !important;
+    stroke:red !important;
+    stroke-width: 3 !important;
+    animation:checks 0.3s forwards !important;
+    /* border: 2px solid red; */
+    /* z-index: 2; */
+}
+.checkbox::before{
+    content: '';
+    background-color: #26bfbf66;
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    display: block;
+    width: 60px;
+    height: 60px;
+    z-index: -1;
+} 
+
+.check-input:checked + .checkbox::before{
+    animation: ripple 0.3s;
+}
+
+@keyframes checks {
+    to{
+        stroke-dashoffset: 0;
+    }
+    
+}
+/* CHECKBOX STYLE */
+
+@layer components{
+    .containers{
+        /* @apply px-[1.5rem]  md:px-[2rem] lg:px-[5rem] xl:px-[8rem]; */
+        @apply px-[1.5rem]  md:px-[2rem] lg:px-[5rem] ;
+    }
+
+
+    /* REGISTRATION PAGE */
+    .input-border{
+        border-color:var(--primary-color);
+        outline: 2px solid var(--primary-color) !important;
+        transition: outline 0.4s ease;
+    }
+
+    .input-border-error-message{
+        border-color:var(--secondary-color) !important;
+        outline-color:var(--secondary-color) !important;
+    }
+
+    .input-field-error-message{
+        @apply text-[var(--secondary-color)]  
+    }
+
+    .react-tel-input{
+        font-family: lato !important;
+        
+    }
+    .react-tel-input-input-fields{
+        max-width: 1000px;
+        width: 100% !important;
+    }
+
+    .right-bar-bg{
+        background: url('../images/register-bg.png') center no-repeat;
+        background-color: var(--grey-color);
+        max-width: 310px;
+        width: 100%;
+        margin: 0 auto;
+        
+        /* height: 373px; */
+    }
+    
+    /* REGISTRATION PAGE */
+
+
+    /* ADMIN DASHBOARD */
+    
+    .avatar:hover  .dropdown{
+        @apply visible 
+    }
+
+    .dropdown.ul:hover .dropdown{
+        @apply visible 
+    } 
+
+    .header_link_items{
+      display: none !important;
+    }
+    .header_menu:hover +  .header_link_items{
+      display: block !important;
+    }
+    
+
+    .recharts-surface{
+        padding: 0 !important;
+    }
+    .recharts-area-area{
+        border: 2px solid red !important;
+    }
+    /* ADMIN DASHBOARD */
+
+   
+      input[type=checkbox] {
+        display: none;
+        pointer-events: none;
+      }
+      input[type=checkbox] + label {
+        cursor: pointer;
+        font-size: 0.8em;
+        display: grid;
+        grid-template-columns: auto 3fr;
+      }
+      input[type=checkbox] + label svg {
+        /* width: 2em; */
+        width: 20px;
+        stroke: var(--secondary-color);
+        /* stroke: #007ce2; */
+        stroke-width: 5;
+        /* fill: green; */
+        fill: white;
+      }
+      input[type=checkbox] + label svg .box {
+        stroke-dasharray: 320;
+        /* stroke-dasharray: 320; */
+        /* stroke-dashoffset: 0; */
+        stroke-dashoffset: 320;
+        fill: white;
+        transition: all 0.3s linear;
+        stroke: var(--secondary-color);
+      }
+      input[type=checkbox] + label svg .check {
+        stroke-dasharray: 70;
+        stroke-dashoffset: 70;
+        fill: none;
+        transition: stroke-dashoffset 0.3s linear;
+        
+      }
+      input[type=checkbox] + label span {
+        padding-top: 0.3em;
+        margin-left: 0.3em;
+        
+      }
+      input[type=checkbox]:checked + label .box {
+        /* transition: fill 0.3s linear; */
+        fill:var(--secondary-color);
+       
+        stroke-dashoffset: 320;
+      }
+      input[type=checkbox] + label svg{
+            stroke:white;
+      }
+      input[type=checkbox]:checked + label .check {
+        stroke-dashoffset: 0;
+      }
+   
+
+      /* TO NOT DISPLAY TRACKBAR  */
+      @variants responsive {
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            /* display: none; */
+        }
+  
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            /*-ms-overflow-style: none;*/  /* IE and Edge */
+           /* scrollbar-width: none; */ /* Firefox */
+        }
+         /* TO NOT DISPLAY TRACKBAR  */
+
+         /* TABLE DATA STYLESHEET */
+        td img{
+            width:36px;
+            height:36px;
+            margin-right: 0.5rem;
+            border-radius:50%;
+            /* vertical-align:middle; */
+        }
+        table{
+            width:100%;
+            margin-top: 0;
+            
+        }
+        thead th{
+            position:sticky !important;
+            top:0;
+            left:0;
+            background-color:var(--grey-color);
+            /* z-index: -1 !important; */
+        }
+       table, th, td{
+        border-collapse:collapse !important;
+        padding: 1rem;
+        white-space:nowrap !important;
+       
+       }
+
+       .data_table{
+        
+        width:95% !important;
+        margin:0.8rem auto;
+        max-height:calc(89% - 1.6rem);
+        overflow:auto;
+       }
+
+       tbody  tr{
+        border-bottom:1px solid #0000000b;
+        
+        /* background-color:#0000000b; */
+        
+       }
+       tbody tr:hover{
+        background-color:#fff6;
+       }
+
+
+/* SUPERADMIN */
+
+
+
+
+
+
+
+
+
+
+       @media (max-width:1253px) {
+        .td:nth-child(2){
+            /* border:2px solid red; */
+            min-width:13.1rem !important;
+        }
+        .staff_list td:nth-child(2){
+            /* border:2px solid red; */
+            min-width:auto !important;
+        }
+       
+        /* td:not(:first-of-type){
+            min-width:13.1rem !important;
+        } */
+        
+       }
+       @media (max-width:768px) {
+        table, th, td{
+           
+            padding: 0.7rem;
+           
+           
+           }
+       }
+
+        /* TABLE DATA STYLESHEET */
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+/* 
+      .scrollbar::-webkit-scrollbar {
+        width: 20px;
+        height: 20px;
+      }
+    
+      .scrollbar::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: #f7f4ed;
+      }
+    
+      .scrollbar::-webkit-scrollbar-thumb {
+        background: #e0cbcb;
+        border-radius: 100vh;
+        border: 3px solid #f6f7ed;
+      }
+    
+      .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #c0a0b9;
+      } */
+}
+

@@ -115,6 +115,29 @@ export const updateFormThree = async (data) => {
 
 }
 
+// Verify Forma Three OTP Code on Modal Box
+// {{baseUrl}}/organization/{{organization_code}}/bank/bvn/finalize/
+export const verifyFormThreeOTPCode = async (otpCode)=>{
+
+    const adminInfo = JSON.parse(localStorage.getItem('adminInfo'))
+
+    if(adminInfo){
+        const accessToken ={
+            headers:{
+                "content-type": "application/json",
+                Authorization : 'Bearer ' + adminInfo.token.access
+            }
+        }
+        
+        const response = await axiosInstance.patch('organization/'+adminInfo.organization.code+'/bank/bvn/finalize/', otpCode, accessToken)
+        return response.data
+    }else{
+        return redirect("/")
+    }
+   
+   
+}
+
 // ONBOARDING / MULTI-STEP FORM  ENDPOINTS //
 
 
