@@ -25,8 +25,15 @@ gap-x-[0.6rem]
 // px-[2rem]
 // p-[14px_80px_14px_80px]
   return (
-
-    <button type="button" {...other} className={btnStyle} ><span >{icon}</span>{text}</button>
+    <a
+      href="https://milarn.com/use-milarn/"
+      target="_blank"
+      {...other}
+      className={btnStyle}
+    >
+      <span>{icon}</span>
+      {text}
+    </a>
     // <>
 
     // {
@@ -37,7 +44,7 @@ gap-x-[0.6rem]
     //      :
     //      <button type="button" {...other} className={btnStyle} >{text}</button>
     // }
-        
+
     // </>
-  )
+  );
 }

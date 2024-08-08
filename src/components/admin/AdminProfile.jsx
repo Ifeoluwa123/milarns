@@ -121,88 +121,91 @@ export default function AdminProfile() {
     }
 
   return (
-    <div className=""> 
-        <p className='mb-[0.5rem] font-[600]'>Profile picture</p>
-        <div className=""> 
-            <ChangeUserImage  userImage={userInfo.avatar?userInfo.avatar :  userImage}  setUserImage={setUserImage} />
-            {/* <ChangeUserImage   /> */}
-        </div>
+    <div className="">
+      <p className="mb-[0.5rem] font-[600]">Profile picture</p>
+      <div className="">
+        <ChangeUserImage
+          userImage={userInfo.avatar ? userInfo.avatar : userImage}
+          setUserImage={setUserImage}
+        />
+        {/* <ChangeUserImage   /> */}
+      </div>
 
-        <div className=" grid gap-y-[1rem] md:grid-cols-2  lg:grid-cols-3 gap-x-[2rem] mt-[1rem] ">
-            <TextField 
-                label="First name"
-                type="text"
-                name="first_name"
-                paddingY="py-[0.5rem]"
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                value={userInfo.first_name}
-                onChange={handleOnChange}
-            />
-            <TextField
-                label="Last name"
-                type="text"
-                name="flast_name"
-                paddingY="py-[0.5rem]"
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                value={userInfo.last_name}
-                onChange={handleOnChange}
-            />
+      <div className=" grid gap-y-[1rem] md:grid-cols-2  lg:grid-cols-3 gap-x-[2rem] mt-[1rem] ">
+        <TextField
+          label="First name"
+          type="text"
+          name="first_name"
+          paddingY="py-[0.5rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          value={userInfo.first_name}
+          onChange={handleOnChange}
+        />
+        <TextField
+          label="Last name"
+          type="text"
+          name="last_name"
+          paddingY="py-[0.5rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          value={userInfo.last_name}
+          onChange={handleOnChange}
+        />
 
-            
-            <SelectField 
-                options={["","Male","Female"]} 
-                paddingY="py-[0.6rem] lg:mt-[0.5rem]"
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                label="Gender"
-                name="gender"
-                value={userInfo.gender}
-                onChange={handleOnChange}
-            />
-             <TextField
-                label="Phone number"
-                type="number"
-                name="phone_number"
-                paddingY="py-[1.3rem]"
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                value={userInfo.phone_number}
-                onChange={handlePhoneChange}
-            />
-             <TextField
-                label="Whatsapp number"
-                type="number"
-                name="whatsapp_number"
-                paddingY="py-[1.3rem]"
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                value={userInfo.whatsapp_number}
-                onChange={handlePhoneChange}
-            />
-             <TextField
-                label="Email"
-                type="text"
-                name="email"
-                paddingY="py-[0.47rem] "
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                value={userInfo.email}
-                onChange={handleOnChange}
-            />
-             <TextField
-                label="Home address"
-                type="text"
-                placeholder="e.g. no 4"
-                name="home_address"
-                paddingY="py-[0.47rem] "
-                fontSize="font-[500]"
-                textSize="text-[0.875rem]"
-                value={userInfo.home_address}
-                onChange={handleOnChange}
-            />
-             {/* <TextField
+        <SelectField
+          options={["", "Male", "Female"]}
+          paddingY="py-[0.6rem] lg:mt-[0.5rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          label="Gender"
+          name="gender"
+          value={userInfo.gender}
+          onChange={handleOnChange}
+        />
+        <TextField
+          label="Phone number"
+          type="number"
+          name="phone_number"
+          paddingY="py-[1.3rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          value={userInfo.phone_number}
+          onChange={handlePhoneChange}
+        />
+        <TextField
+          label="Whatsapp number"
+          type="number"
+          name="whatsapp_number"
+          paddingY="py-[1.3rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          value={userInfo.whatsapp_number}
+          onChange={handlePhoneChange}
+        />
+        <TextField
+          label="Email"
+          type="text"
+          name="email"
+          disabled={true}
+          paddingY="py-[0.47rem] "
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          value={userInfo.email}
+          onChange={handleOnChange}
+        />
+        <TextField
+          label="Home address"
+          type="text"
+          placeholder="e.g. no 4"
+          name="home_address"
+          paddingY="py-[0.47rem] "
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          value={userInfo.home_address}
+          onChange={handleOnChange}
+        />
+        {/* <TextField
                 label="State"
                 type="text"
                 placeholder="e.g. Lagos"
@@ -213,32 +216,37 @@ export default function AdminProfile() {
                 value={userInfo.state}
                 onChange={handleOnChange}
             /> */}
-            <SelectField 
-            options={state} 
-            paddingY="py-[0.6rem] lg:mt-[0.5rem]"
-            fontSize="font-[500]"
-            textSize="text-[0.875rem]"
-            label="State"
-            name="state"
-            value={userInfo.state}
-            onChange={handleOnChange}
-            />
-            <SelectField 
-            options={["","Nigeria","Spain"]} 
-            paddingY="py-[0.6rem] lg:mt-[0.5rem]"
-            fontSize="font-[500]"
-            textSize="text-[0.875rem]"
-            label="Country"
-            name="country"
-            value={userInfo.country_code}
-            onChange={handleOnChange}
-            />
-        </div>
+        <SelectField
+          options={state}
+          paddingY="py-[0.6rem] lg:mt-[0.5rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          label="State"
+          name="state"
+          value={userInfo.state}
+          onChange={handleOnChange}
+        />
+        <SelectField
+          options={["", "Nigeria"]}
+          paddingY="py-[0.6rem] lg:mt-[0.5rem]"
+          fontSize="font-[500]"
+          textSize="text-[0.875rem]"
+          label="Country"
+          name="country"
+          value={userInfo.country_code}
+          onChange={handleOnChange}
+        />
+      </div>
 
-        <div className="mb-[9rem]">
-                 {/* <InnerButton onClick={handleSubmit } text={`${isPending? "Loading...": "Update profile"}`}  type="button"  width="w-fit " /> */}
-                 <InnerButton onClick={handleSubmit } text={isPending? "Loading...":"Update" }  type="button"  width="w-fit " />
-        </div>
+      <div className="mb-[9rem]">
+        {/* <InnerButton onClick={handleSubmit } text={`${isPending? "Loading...": "Update profile"}`}  type="button"  width="w-fit " /> */}
+        <InnerButton
+          onClick={handleSubmit}
+          text={isPending ? "Loading..." : "Update"}
+          type="button"
+          width="w-fit "
+        />
+      </div>
     </div>
-  )
+  );
 }

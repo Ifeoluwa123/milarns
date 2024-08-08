@@ -38,7 +38,6 @@ export default function FormThreeOnboarding() {
       return <Error404 status={error.response.status} message={error.response.data.message} desc ={error.message} />
   }
 
-console.log( userData)
   
 let [data, setData] = useState(inputFields)
 

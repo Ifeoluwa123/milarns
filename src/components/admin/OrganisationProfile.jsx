@@ -149,7 +149,6 @@ console.log(userData)
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-[340px_340px] gap-x-[5rem] gap-y-[1rem]">
           <TextField
-            label="Organisation name"
             value={userData.name}
             // onClick={''}
             type="text"
