@@ -229,9 +229,6 @@ let [deleteBulk, setDeleteBulk] = useState(false)
 let [deactivateBulk, setDeactivateBulk] = useState(false)
 let [activateBulk, setActivateBulk] = useState(false)
 const handleBulkProceed = ()=>{
-  if(selectedUsers.length === 0){
-    return AlertMessages('Error', 'At least one staff needs to be selected', 'error')
-  }
   if(displayText.text == 'Activate'){
     return setActivateBulk(true);
   }
@@ -261,21 +258,11 @@ mutateActivate(selectedUsers,{
       setActivateBulk(false)
       AlertMessages('Success', success.message, 'success')
       setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
-      // setData({
-      //   ...data,
-      //   checked:false
-      // })
-      
     }
   },
   onError:(error)=>{
     if(error){
       setActivateBulk(false)
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
       if(error.response.data.message){
         return AlertMessages('Error',error.response.data.message, 'error')
       }
@@ -296,9 +283,7 @@ mutateDeactivate(selectedUsers,{
    
     if(success){
       setDeactivateBulk(false)
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
+     
 
       
       AlertMessages('Success', success.message, 'success')
@@ -307,9 +292,6 @@ mutateDeactivate(selectedUsers,{
   onError:(error)=>{
     if(error){
       setDeactivateBulk(false)
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
       if(error.response.data.errors.codes.non_field_errors){
         return AlertMessages('Error',error.response.data.errors.codes.non_field_errors, 'error')
       }

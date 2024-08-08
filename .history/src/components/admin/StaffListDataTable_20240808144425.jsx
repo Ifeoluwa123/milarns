@@ -230,7 +230,7 @@ let [deactivateBulk, setDeactivateBulk] = useState(false)
 let [activateBulk, setActivateBulk] = useState(false)
 const handleBulkProceed = ()=>{
   if(selectedUsers.length === 0){
-    return AlertMessages('Error', 'At least one staff needs to be selected', 'error')
+    return AlertMessages('Error', 'At one staff needs to be selected', 'error')
   }
   if(displayText.text == 'Activate'){
     return setActivateBulk(true);

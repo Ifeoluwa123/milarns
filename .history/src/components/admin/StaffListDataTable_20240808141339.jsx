@@ -22,7 +22,7 @@ import InnerButton from '../shared/InnerButton'
 import { IoTrashOutline } from "react-icons/io5";
 import { IoCardOutline } from "react-icons/io5";
 import getRandomBackroundColor from '../../utilities/getRandomBackroundColor'
-import { useActivateSingleEmployeeData, useDeactivateSingleEmployeeData, useDeleteEmployee } from '../../services/admin/mutation'
+import { useDeactivateSingleEmployeeData, useDeleteEmployee } from '../../services/admin/mutation'
 
 
 import {useQueryClient} from"@tanstack/react-query"
@@ -111,9 +111,6 @@ export default function StaffListDataTable({ addNewstaffHandler,handleExport }) 
 //  const deactivateSingleRecord = ()=>{
   
 //  }
-
-
-// Single Staff Delete
 let {mutate:deleteMutation} = useDeleteEmployee()
 // const {mutate} = useDeleteEmployee()
 let handleDeleteUser =  ()=>{
@@ -141,8 +138,6 @@ let handleDeleteUser =  ()=>{
     // })
 }
 
-
-// Single Staff Deactivate
 let {mutate:mutateDeactivate, isPending:isDeactivatePending} = useDeactivateSingleEmployeeData()
 let handleDeactivateUser =  ()=>{
 
@@ -168,40 +163,6 @@ let handleDeactivateUser =  ()=>{
   })
 
 }
-
-// Single Staff Activate
-
-let {mutate:mutateActivate, isPending:isActivatePending} = useActivateSingleEmployeeData()
-let handleActivateUser =  ()=>{
-
-  mutateActivate([selectedUser],{
-    onSuccess:(success)=>{
-     
-      if(success){
-        setActivateRecord(false)
-        AlertMessages('Success', success.message, 'success')
-      }
-    },
-    onError:(error)=>{
-      if(error){
-        setActivateRecord(false)
-        if(error.response.data.message){
-          return AlertMessages('Error',error.response.data.message, 'error')
-        }
-       
-       
-      }
-      // console.log(error)
-    }
-  })
-
-}
-
-
-
-
-
-
 
 
 // BULK STAFF RECORD CONFIGURATION
@@ -229,9 +190,6 @@ let [deleteBulk, setDeleteBulk] = useState(false)
 let [deactivateBulk, setDeactivateBulk] = useState(false)
 let [activateBulk, setActivateBulk] = useState(false)
 const handleBulkProceed = ()=>{
-  if(selectedUsers.length === 0){
-    return AlertMessages('Error', 'At least one staff needs to be selected', 'error')
-  }
   if(displayText.text == 'Activate'){
     return setActivateBulk(true);
   }
@@ -246,59 +204,21 @@ const handleBulkProceed = ()=>{
     const handleBulkDeleteUser = ()=>{
       console.log(selectedUsers)
     }
-
-
-
-
-
-
     const handleBulkActivateUser = ()=>{
 console.log(selectedUsers)
-mutateActivate(selectedUsers,{
-  onSuccess:(success)=>{
-   
-    if(success){
-      setActivateBulk(false)
-      AlertMessages('Success', success.message, 'success')
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
-      // setData({
-      //   ...data,
-      //   checked:false
-      // })
-      
-    }
-  },
-  onError:(error)=>{
-    if(error){
-      setActivateBulk(false)
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
-      if(error.response.data.message){
-        return AlertMessages('Error',error.response.data.message, 'error')
-      }
-     
-     
-    }
-    // console.log(error)
-  }
-})
     }
 
 
 
   const handleBulkDeactivateUser = ()=>{
+console.log(selectedUsers)
 
 mutateDeactivate(selectedUsers,{
   onSuccess:(success)=>{
    
     if(success){
       setDeactivateBulk(false)
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
+     
 
       
       AlertMessages('Success', success.message, 'success')
@@ -307,9 +227,6 @@ mutateDeactivate(selectedUsers,{
   onError:(error)=>{
     if(error){
       setDeactivateBulk(false)
-      setSelectAll(false)
-      const updatedItems = staffList.results.map(item => ({ ...item, checked: false }));
-      setData(updatedItems)
       if(error.response.data.errors.codes.non_field_errors){
         return AlertMessages('Error',error.response.data.errors.codes.non_field_errors, 'error')
       }
@@ -348,7 +265,7 @@ mutateDeactivate(selectedUsers,{
                           </div>
 
                           <div className="flex items-center gap-x-[2rem] mt-[1rem]">
-                          <Button onClick={handleActivateUser} text={`${isActivatePending? 'Loading...': 'Yes Proceed'}`} width="w-fit" padding="py-[0.5rem] px-[1.7rem]" />
+                          <Button  text="Yes Proceed" width="w-fit" padding="py-[0.5rem] px-[1.7rem]" />
                           <OutlineButton onClick={()=>setActivateRecord(false)}  text="Cancel"  />
                           </div>
         </Modals> 
@@ -386,7 +303,7 @@ mutateDeactivate(selectedUsers,{
                           </div>
 
                           <div className="flex items-center gap-x-[2rem] mt-[1rem]">
-                          <Button onClick={handleBulkActivateUser} text={`${isActivatePending? 'Loading...': 'Yes Proceed'}`} width="w-fit" padding="py-[0.5rem] px-[1.7rem]" />
+                          <Button onClick={handleBulkActivateUser} text="Yes Proceed" width="w-fit" padding="py-[0.5rem] px-[1.7rem]" />
                           <OutlineButton onClick={()=>setActivateBulk(false)}  text="Cancel"  />
                           </div>
         </Modals> 

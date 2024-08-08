@@ -543,7 +543,7 @@ export const activateSingleEmployeeData = async (staffCode)=>{
             Authorization : 'Bearer ' + adminInfo.token.access
         }
     }
-    const response = await axiosInstance.patch('organization/'+adminInfo.organization.code+'/staff/bulk/activate/', {codes:staffCode},accessToken)
+    const response = await axiosInstance.patch('organization/'+adminInfo.organization.code+'/staff/bulk/activate', {codes:staffCode},accessToken)
 
     return response.data
 }
