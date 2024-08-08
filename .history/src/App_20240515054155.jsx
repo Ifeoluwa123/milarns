@@ -2,7 +2,7 @@ import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Error404 from './pages/Error404'
 import AdminLogin from './pages/auth/AdminLogin'
-import AdminLayout from './layouts/AdminLayout' 
+import AdminLayout from './layouts/AdminLayout'
 import PendingRegistrationLayout from './layouts/PendingRegistrationLayout'
 import AdminRegistration from './pages/auth/AdminRegistration'
 import AdminResetPassword from './pages/auth/AdminResetPassword'
@@ -24,7 +24,7 @@ import WagesPulled from './pages/admin/WagesPulled';
 import Finance from './pages/admin/Finance';
 import Settings from './pages/admin/Settings';
 import StaffList from './pages/admin/StaffList'
- 
+
 
 
 import AdminRegistrationOTPVerification from './pages/auth/AdminRegistrationOTPVerification'
@@ -43,136 +43,133 @@ export default function App() {
 
     let routes = createBrowserRouter([
         {
-            path:'/',
-            errorElement:<Error404 />,
-            element:<AdminLogin />
+            path: '/',
+            errorElement: <Error404 />,
+            element: <AdminLogin />
         },
-      
+
         {
-            path:'/register',
-            errorElement:<Error404 />,
-            element:<AdminRegistration />
-        },
-        {
-            path:'/reset-password',
-            errorElement:<Error404 />,
-            element:<AdminResetPassword />
+            path: '/register',
+            errorElement: <Error404 />,
+            element: <AdminRegistration />
         },
         {
-            path:'/verify-otp',
-            element:<AdminVerification />
+            path: '/reset-password',
+            errorElement: <Error404 />,
+            element: <AdminResetPassword />
         },
         {
-            path:'/verify-otp-reg',
-            element:<AdminRegistrationOTPVerification />
+            path: '/verify-otp',
+            element: <AdminVerification />
         },
         {
-            path:'/set-password',
-            element:<AdminSetNewPassword />
+            path: '/verify-otp-reg',
+            element: <AdminRegistrationOTPVerification />
         },
-         // ADMIN ROUTE 
-         {
-            path:'/',
-            element:<AdminLayout />, // Condtionally render the admin based on isAuthenticated && isUserRole -> AdminLayout or Admin Login
-            errorElement:<Error404 />, 
-            children:[
+        {
+            path: '/set-password',
+            element: <AdminSetNewPassword />
+        },
+        // ADMIN ROUTE 
+        {
+            path: '/',
+            element: <AdminLayout />, // Condtionally render the admin based on isAuthenticated && isUserRole -> AdminLayout or Admin Login
+            errorElement: <Error404 />,
+            children: [
                 {
-                    index:true,
-                    path:'/admin/*',
-                    element:<AdminDashboard  />
+                    index: true,
+                    path: '/admin/*',
+                    element: <AdminDashboard />
                 },
                 {
-                    path:'staff-list',
-                    element:<StaffList />
-                   
-                },
-                {   
-                           
-                    path:'staff-list/add-single-staff',
-                    element:<AddManualOnboardStaff />
-                }, 
-                 {
-                    path:'staff-list/add-bulk-staff',
-                    element:<AddBulkOnboardStaff />
+                    path: 'staff-list',
+                    element: <StaffList />
+
                 },
                 {
-                    path:'staff-list/:staffId',
-                    element:<EditOnBoardStaff />
+
+                    path: 'staff-list/add-single-staff',
+                    element: <AddManualOnboardStaff />
                 },
                 {
-                    path:'payroll',
-                    element:<PayRoll />
+                    path: 'staff-list/add-bulk-staff',
+                    element: <AddBulkOnboardStaff />
                 },
                 {
-                    path:'payroll/pay-salary',
-                    element:<PayrollSalary />
+                    path: 'staff-list/:staffId',
+                    element: <EditOnBoardStaff />
                 },
                 {
-                    path:'payroll/add-bonus',
-                    element:<PayrollBonus />
+                    path: 'payroll',
+                    element: <PayRoll />
                 },
                 {
-                    path:'payroll/add-deduction',
-                    element:<PayrollDeduction />
+                    path: 'payroll/pay-salary',
+                    element: <PayrollSalary />
                 },
                 {
-                    path:'wages',
-                    element:<WagesPulled />
+                    path: 'payroll/add-bonus',
+                    element: <PayrollBonus />
                 },
                 {
-                    path:'finance',
-                    element:<Finance />
+                    path: 'payroll/add-deduction',
+                    element: <PayrollDeduction />
                 },
                 {
-                    path:'settings',
-                    element:<Settings />,
-                
+                    path: 'wages',
+                    element: <WagesPulled />
+                },
+                {
+                    path: 'finance',
+                    element: <Finance />
+                },
+                {
+                    path: 'settings',
+                    element: <Settings />,
+
                 },
 
             ]
-         },
+        },
 
 
 
-          //  PENGING REGISTRATION
-          {
-            path:'/', 
+        //  PENGING REGISTRATION
+        {
+            path: '/',
             // index:false,
-            element:<PendingRegistrationLayout />,
-            errorElement:<Error404 />,
-            children:[
+            element: <PendingRegistrationLayout />,
+            errorElement: <Error404 />,
+            children: [
                 {
-                    path:'/onboarding',  
-                    element:<FormOneOnboard />
+                    path: '/onboarding',
+                    element: <FormOneOnboard />
                 },
                 {
-                    path:'/organizationInformation',  
-                    element:<FormTwoOnboard />
+                    path: '/organizationInformation',
+                    element: <FormTwoOnboard />
                 },
                 // {
                 //     path:'/onboarding_3',  
                 //     element:<FormThreeOnboard />
                 // },
                 {
-                    path:'/success',
-                    element:<FormRegSuccessful />
+                    path: '/success',
+                    element: <FormRegSuccessful />
                 },
             ]
 
-            },
+        },
 
 
-              // SUPERADMIN ROUTE
-             
-
-
-            
-
-])
-// ], {basename:"/wagepull"})
+        // SUPERADMIN ROUTE
 
 
 
+
+
+    ])
+    // ], {basename:"/wagepull"})
 
 
 
@@ -183,5 +180,8 @@ export default function App() {
 
 
 
-    return <RouterProvider   router={routes} />
+
+
+
+    return <RouterProvider router={routes} />
 }
