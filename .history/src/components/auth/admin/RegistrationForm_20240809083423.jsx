@@ -43,7 +43,7 @@ let [confirmPwd, setConfirmPwd] = useState('')
 let {mutate, isPending} = useRegOrgMutation()
     let handleOnSubmit = (e)=>{
       e.preventDefault()
-      
+      console.log(userData)
      
       if(validateUserData(userData, setErrMsg)){
         if(userData.phone_number.length != 11 ){

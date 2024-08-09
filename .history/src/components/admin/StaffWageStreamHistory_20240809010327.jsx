@@ -130,7 +130,7 @@ export default function StaffWageStreamHistory() {
                         
                         
                     </td>
-                    <td className='relative md:hidden' >
+                    <td className='relative ' >
                         {/* <span onClick={() => handleRowClick(item.code)} className='cursor-pointer table_row hidden md:block'><BiDotsVerticalRounded /></span> */}
                         <span onClick={() => handleRowClick(item.code)} className='block md:hidden text-gray-600'><IoMdArrowDropdown /></span>
                     

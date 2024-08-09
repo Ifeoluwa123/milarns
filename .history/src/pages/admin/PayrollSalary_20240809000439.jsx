@@ -105,7 +105,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
         {/* HEADER SECTION */}
         <div className="flex justify-between items-center">
             <p className='font-[600] text-[0.85rem]'>Select staffs you want to pay salary to</p>
-            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text={selectAll? 'Unselect all Staffs': 'Select all Staffs'} width='w-fit text-[0.85rem]' />
+            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text={selectAll? 'Unselect all Staffs': 'Select all staffs'} width='w-fit text-[0.85rem]' />
         </div>
 
         {/* PAYROLL DATA TABLE ACTION  */}

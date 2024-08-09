@@ -61,7 +61,7 @@ export default function PayRollDataTable({data:datas,handleDateChange, monthYear
     let paginatedData = data.slice(startIndex, endIndex)
     const totalPages = Math.ceil(data.length / itemsPerPage)
 
-
+    console.log(data)
 
     // let {staffId} = useParams()
 

@@ -5,12 +5,13 @@ import { RiErrorWarningLine } from 'react-icons/ri'
 import Button from './Button'
 import { usePayEmployeeSalary } from '../../services/admin/mutation'
 import AlertMessages from './AlertMessages'
-import { useNavigate } from 'react-router-dom'
  
 export default function ModalPayrollSalary({isOpen, setIsOpen, value, mutation}) {
 
-  let navigate = useNavigate()
- 
+//  if(mutation.isPending){
+//       return <h1>Loading...</h1>
+//     }
+  console.log(mutation.variables)
 let payload = {}
   if(mutation.variables ){
     payload = {
@@ -30,7 +31,6 @@ let payload = {}
                   if(success){
                     setIsOpen(false)
                     AlertMessages("Payment Successful",success.message, "success")
-                    navigate('/payroll')
                   }
              
                  },

@@ -8,12 +8,6 @@ import { TbCurrencyNaira } from 'react-icons/tb'
 import { RiErrorWarningLine } from 'react-icons/ri'
 import SelectField from '../../components/shared/SelectField'
 import getCurrentMonthAndYear from '../../utilities/getCurrentMonthAndYear'
-import { GoDotFill } from 'react-icons/go'
-import Checkbox from '../../components/shared/Checkbox'
-import Pagination from '../../components/shared/Pagination'
-import Button from '../../components/shared/Button'
-import { handlePayrollRowChange, handlePayrollSelectAll } from '../../utilities/checkedBoxDataTableHandler'
-import ModalPayrollAddBonus from '../../components/shared/ModalPayrollAddBonus'
 
 export default function PayrollBonus() {
   const [isOpen, setIsOpen] = useState(false)
@@ -64,16 +58,10 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
     month: monthAndYear.month,
     year: monthAndYear.year
   })
-
-    const handleSubmit = ()=>{
-      setIsOpen(true)
-    }
   return (
     <>
     
-   {/* MODAL TO ADD BONUS */}
-   <ModalPayrollAddBonus staffCode={selectUsers} isOpen={isOpen} setIsOpen={setIsOpen} />
-   
+ 
     
 
 
@@ -83,7 +71,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
         {/* HEADER SECTION */}
         <div className="flex justify-between items-center">
             <p className='font-[600] text-[0.85rem]'>Select staffs you want to pay bonus to</p>
-            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text={selectAll? 'Unselect all Staffs': 'Select all Staffs' }  width='w-fit text-[0.85rem]' />
+            <InnerButton text="Select all staffs"  width='w-fit text-[0.85rem]' />
         </div>
 
         
@@ -137,7 +125,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
                              
                             </td>
                          
-                        <td ><Checkbox name={item.staff.code} checked={item.staff.checked}  onChange={(e)=>handlePayrollRowChange(item.staff.code, data, setData, setSelectAll, setSelectedUsers)}  /></td>   
+                        <td ><Checkbox id={item.id} checked={item.isChecked} onChange={()=>handleSingleCheckboxChange(item.id, data, setSelectAll,setData )} /></td>   
                  </tr>
 
 
@@ -152,24 +140,6 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
 
              </table>
              </div>
-             <div className="mt-[2rem]">
-          <Pagination
-                         currentPage={currentPage}
-                         totalPages={totalPages}
-                         onPageChange={handlePageChange}
-                 />
-         </div>
-
-         <div className="mt-[2rem]  flex items-center justify-between sm:max-w-[60%] gap-x-[1rem]">
-                    {/* <InnerButton    text= "Proceed to make payment" width={` w-fit text-[0.85rem] ${!true? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white"} `}    /> */}
-                    
-
-                    <Button  onClick={handleSubmit} disabled={!selectUsers.length > 0}  bgColor={!selectUsers.length > 0? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={"Proceed to record bonus"} padding="py-[0.6rem]" />
-                    {/* <Button onClick={handleAddBonus} disabled={payload.amount == '' || payload.medium == '' } bgColor={payload.amount == '' || payload.medium == ''? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={isPending? "Loading...": "Record bonus now"} padding="py-[0.6rem]" /> */}
-   
-                     
-
-        </div>
              </div>
         
        

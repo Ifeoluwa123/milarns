@@ -7,7 +7,6 @@ import { TbCurrencyNaira } from 'react-icons/tb'
 import { useAddEmployeeBonusOrDeduction } from '../../services/admin/mutation'
 import AlertMessages from './AlertMessages'
 import Button from './Button'
-import { useNavigate } from 'react-router-dom'
 
 export default function ModalPayrollAddBonus({isOpen, setIsOpen, staffCode}) {
 
@@ -21,15 +20,14 @@ export default function ModalPayrollAddBonus({isOpen, setIsOpen, staffCode}) {
 })
 
 
-let navigate = useNavigate()
-
 useEffect(function(){
 
   if(staffCode){
-    setPayLoad({
-      ...payload,
-      codes:Array.isArray(staffCode)? staffCode :  [staffCode]
-    })
+    setPayLoad((prev)=>({
+      ...prev,
+    
+      codes:[staffCode]
+    }))
   }
  
 },[staffCode])
@@ -41,22 +39,22 @@ useEffect(function(){
 
               if(name === "medium"){
                 if(value ===  "record_as_cash_received"){
-                  setPayLoad({
-                    ...payload,
+                  setPayLoad((prev)=>({
+                    ...prev,
                    medium:"cash"
-                  })
+                  }))
                 }else{
-                  setPayLoad({
-                    ...payload,
+                  setPayLoad((prev)=>({
+                    ...prev,
                    medium:"salary_payout"
-                  })
+                  }))
                 }
               }else{
-                setPayLoad({
-                  ...payload,
+                setPayLoad((prev)=>({
+                  ...prev,
                   [name]:value,
                   // codes:[staffCode]
-                })
+                }))
               }
             
     }
@@ -70,16 +68,15 @@ useEffect(function(){
                     // console.log(success)
                     setPayLoad({})
                     setIsOpen(false)
-                    setPayLoad({
-                      ...payload,
+                    setPayLoad((prev)=>({
+                      ...prev,
                      medium:"",
                      amount:''
-                    })
+                    }))
                     AlertMessages("Bonus Added Successfully",success.message, "success")
-                    navigate('/payroll')
                 },
                 onError: (error)=>{
-                 
+                  console.log(error)
                   setPayLoad((prev)=>({
                     ...prev,
                    medium:"",

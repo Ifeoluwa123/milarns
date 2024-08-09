@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function ModalPayrollAddBonus({isOpen, setIsOpen, staffCode}) {
 
-
+console.log(Array.isArray(staffCode))
   
   let [payload, setPayLoad] = useState({
     codes: Array.isArray(staffCode)? staffCode :  [staffCode],
@@ -28,6 +28,7 @@ useEffect(function(){
   if(staffCode){
     setPayLoad({
       ...payload,
+    
       codes:Array.isArray(staffCode)? staffCode :  [staffCode]
     })
   }

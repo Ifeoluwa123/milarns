@@ -105,7 +105,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
         {/* HEADER SECTION */}
         <div className="flex justify-between items-center">
             <p className='font-[600] text-[0.85rem]'>Select staffs you want to pay salary to</p>
-            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text={selectAll? 'Unselect all Staffs': 'Select all Staffs'} width='w-fit text-[0.85rem]' />
+            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text="Select all staffs" width='w-fit text-[0.85rem]' />
         </div>
 
         {/* PAYROLL DATA TABLE ACTION  */}
@@ -159,7 +159,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
                              
                             </td>
                          
-
+                        {/* <td ><Checkbox id={item.id} checked={item.isChecked} onChange={()=>handleSingleCheckboxChange(item.id, data, setSelectAll,setData )} /></td>    */}
                         <td ><Checkbox  name={item.staff.code} checked={item.staff.checked}  onChange={(e)=>handlePayrollRowChange(item.staff.code, data, setData, setSelectAll, setSelectedUsers)}  /></td>   
                  </tr>
 
@@ -186,8 +186,8 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
          <div className="mt-[2rem]  flex items-center justify-between sm:max-w-[60%] gap-x-[1rem]">
                     {/* <InnerButton    text= "Proceed to make payment" width={` w-fit text-[0.85rem] ${!true? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white"} `}    /> */}
                     
-
-                    <Button onClick={handleCompute} disabled={!selectUsers.length > 0}  bgColor={!selectUsers.length > 0? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={"Proceed to make payment"} padding="py-[0.6rem]" />
+                    <Button onClick={handleCompute}  bgColor={!true? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={"Proceed to make payment"} padding="py-[0.6rem]" />
+                    {/* <Button onClick={handleCompute}  bgColor={!selectUsers.length > 0? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={"Proceed to make payment"} padding="py-[0.6rem]" /> */}
                     {/* <Button onClick={handleAddBonus} disabled={payload.amount == '' || payload.medium == '' } bgColor={payload.amount == '' || payload.medium == ''? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={isPending? "Loading...": "Record bonus now"} padding="py-[0.6rem]" /> */}
    
                      

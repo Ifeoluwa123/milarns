@@ -12,9 +12,6 @@ import Checkbox from '../../components/shared/Checkbox'
 import Pagination from '../../components/shared/Pagination'
 import Button from '../../components/shared/Button'
 import { handlePayrollRowChange, handlePayrollSelectAll } from '../../utilities/checkedBoxDataTableHandler'
-import { useComputeEmployeeSalary } from '../../services/admin/mutation'
-import getCurrentMonthAndYear from '../../utilities/getCurrentMonthAndYear'
-import Spinner from '../../components/shared/Spinner'
 
 export default function PayrollSalary() {
   const [isOpen, setIsOpen] = useState(false)
@@ -54,37 +51,9 @@ export default function PayrollSalary() {
   let [selectAll, setSelectAll] = useState(false)
   let [selectUsers, setSelectedUsers] = useState([])
 
-
-
-  let monthAndYear = getCurrentMonthAndYear()
-
-  let [isModalSalaryOpen, setIsModalSalaryOpen] = useState(false)
-let [modalSalaryValues, setModalSalaryValues] = useState({})
-
-  const [monthYear, setMonthYear] = useState({
-    month: monthAndYear.month,
-    year: monthAndYear.year
-  })
-
   let computeMutation = useComputeEmployeeSalary()
   const handleCompute = ()=>{
-    monthYear.codes = selectUsers
-    const data = {...monthYear}
-    setSelectedUsers([]);
-    computeMutation.mutate(data, {
-    onSuccess:(success)=>{
-          // console.log(success)
-          // 
-          if(success){
-            setIsModalSalaryOpen(true)
-            setModalSalaryValues(success)
-          }
-      
-    },
-    onError:(error)=>{
-      console.log(error)
-    }
-})
+
   }
 
 // console.log(data)
@@ -94,10 +63,6 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
     <> 
  
     {/* <ModalPayrollSalary isOpen={isOpen} setIsOpen ={setIsOpen} /> */}
-
-    {
-          computeMutation.isPending? <Spinner /> :  <ModalPayrollSalary  mutation= {computeMutation} value={modalSalaryValues} isOpen={isModalSalaryOpen} setIsOpen={setIsModalSalaryOpen} />
-        }
     
     <div className=' max-w-[46rem] w-[100%] md:py-[2rem] md:pl-[3rem] '>
       {/* <div className="bg-[#F5F5F5]  border-[1px]  w-[46rem] px-[1rem] py-[2rem] rounded-[4px]"> */}
@@ -105,7 +70,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
         {/* HEADER SECTION */}
         <div className="flex justify-between items-center">
             <p className='font-[600] text-[0.85rem]'>Select staffs you want to pay salary to</p>
-            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text={selectAll? 'Unselect all Staffs': 'Select all Staffs'} width='w-fit text-[0.85rem]' />
+            <InnerButton onClick={()=>handlePayrollSelectAll(selectAll, setSelectAll, unpaidStaff, setData,  setSelectedUsers)} text="Select all staffs" width='w-fit text-[0.85rem]' />
         </div>
 
         {/* PAYROLL DATA TABLE ACTION  */}
@@ -159,7 +124,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
                              
                             </td>
                          
-
+                        {/* <td ><Checkbox id={item.id} checked={item.isChecked} onChange={()=>handleSingleCheckboxChange(item.id, data, setSelectAll,setData )} /></td>    */}
                         <td ><Checkbox  name={item.staff.code} checked={item.staff.checked}  onChange={(e)=>handlePayrollRowChange(item.staff.code, data, setData, setSelectAll, setSelectedUsers)}  /></td>   
                  </tr>
 
@@ -186,8 +151,7 @@ let [modalSalaryValues, setModalSalaryValues] = useState({})
          <div className="mt-[2rem]  flex items-center justify-between sm:max-w-[60%] gap-x-[1rem]">
                     {/* <InnerButton    text= "Proceed to make payment" width={` w-fit text-[0.85rem] ${!true? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white"} `}    /> */}
                     
-
-                    <Button onClick={handleCompute} disabled={!selectUsers.length > 0}  bgColor={!selectUsers.length > 0? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={"Proceed to make payment"} padding="py-[0.6rem]" />
+                    <Button onClick={handleCompute}  bgColor={!selectUsers.length > 0? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={"Proceed to make payment"} padding="py-[0.6rem]" />
                     {/* <Button onClick={handleAddBonus} disabled={payload.amount == '' || payload.medium == '' } bgColor={payload.amount == '' || payload.medium == ''? "bg-grey-500 text-black cursor-not-allowed" : "bg-[var(--secondary-color)] text-white" }  text={isPending? "Loading...": "Record bonus now"} padding="py-[0.6rem]" /> */}
    
                      

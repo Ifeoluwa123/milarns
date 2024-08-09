@@ -82,7 +82,7 @@ export default function StaffWageStreamHistory() {
                      <th className='hidden md:table-cell z-[20]'>Hour rate</th>
                      <th className='hidden md:table-cell z-[20]'>Work hour</th>
                     <th className=' md:table-cell z-[20]'>Status</th> 
-                    <th className='z-[20] md:hidden'></th> 
+                    <th className='z-[20]'></th> 
                  </tr>
              </thead>
 
@@ -130,8 +130,8 @@ export default function StaffWageStreamHistory() {
                         
                         
                     </td>
-                    <td className='relative md:hidden' >
-                        {/* <span onClick={() => handleRowClick(item.code)} className='cursor-pointer table_row hidden md:block'><BiDotsVerticalRounded /></span> */}
+                    <td className='relative ' >
+                        <span onClick={() => handleRowClick(item.code)} className='cursor-pointer table_row hidden md:block'><BiDotsVerticalRounded /></span>
                         <span onClick={() => handleRowClick(item.code)} className='block md:hidden text-gray-600'><IoMdArrowDropdown /></span>
                     
                     

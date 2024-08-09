@@ -5,7 +5,6 @@ import { RiErrorWarningLine } from 'react-icons/ri'
 import Button from './Button'
 import { usePayEmployeeSalary } from '../../services/admin/mutation'
 import AlertMessages from './AlertMessages'
-import { useNavigate } from 'react-router-dom'
  
 export default function ModalPayrollSalary({isOpen, setIsOpen, value, mutation}) {
 

@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function ModalPayrollAddBonus({isOpen, setIsOpen, staffCode}) {
 
-
+console.log(Array.isArray(staffCode))
   
   let [payload, setPayLoad] = useState({
     codes: Array.isArray(staffCode)? staffCode :  [staffCode],
@@ -26,10 +26,11 @@ let navigate = useNavigate()
 useEffect(function(){
 
   if(staffCode){
-    setPayLoad({
-      ...payload,
+    setPayLoad((prev)=>({
+      ...prev,
+    
       codes:Array.isArray(staffCode)? staffCode :  [staffCode]
-    })
+    }))
   }
  
 },[staffCode])
@@ -41,22 +42,22 @@ useEffect(function(){
 
               if(name === "medium"){
                 if(value ===  "record_as_cash_received"){
-                  setPayLoad({
-                    ...payload,
+                  setPayLoad((prev)=>({
+                    ...prev,
                    medium:"cash"
-                  })
+                  }))
                 }else{
-                  setPayLoad({
-                    ...payload,
+                  setPayLoad((prev)=>({
+                    ...prev,
                    medium:"salary_payout"
-                  })
+                  }))
                 }
               }else{
-                setPayLoad({
-                  ...payload,
+                setPayLoad((prev)=>({
+                  ...prev,
                   [name]:value,
                   // codes:[staffCode]
-                })
+                }))
               }
             
     }
@@ -70,11 +71,11 @@ useEffect(function(){
                     // console.log(success)
                     setPayLoad({})
                     setIsOpen(false)
-                    setPayLoad({
-                      ...payload,
+                    setPayLoad((prev)=>({
+                      ...prev,
                      medium:"",
                      amount:''
-                    })
+                    }))
                     AlertMessages("Bonus Added Successfully",success.message, "success")
                     navigate('/payroll')
                 },
